@@ -15,7 +15,7 @@ class Panier{
     }
 
     // je declare le niveau intermediaire entre public et private avc visibilité protected, qui retourne 1 chaine de caracteres
-    //public ne peut etre utiliser en dehors de la class
+    //protected ne peut etre utiliser en dehors de la class
     protected function retirerDuPanier(){
         return "Le produit bien été retiré <br>";
     }
@@ -44,7 +44,7 @@ class Panier{
 // je dois créer 1 objet de ma classe (se souvenir de $pdo = new PDO)   
 $panier = new Panier;
 
-// le var_dump de mn objet m indique que cst dnc bien 1 objet de ma  class Panier. Que lui a été attribué l identifiant #1. Qu'il contient 1 propriété. et que 7 propriété ne réçoit ptr l instant aucune valeur (NULL)  
+// le var_dump de mn objet m indique que cst dnc bien 1 objet de ma  class Panier. Que lui a été attribué l identifiant #1. Qu'il contient 1 propriété. et que 7 propriété ne réçoit pr l instant aucune valeur (NULL)  
 echo '<pre>'; var_dump($panier); echo '</pre>';
 
 // mn pritn_r m indique que mn objet contient une méthode (qui à l'indice 0). Il ne peut me montrer ls 2 autres méthodes car elles ont 1 visibilité protected et private
@@ -52,15 +52,15 @@ echo '<pre>'; print_r(get_class_methods($panier)); echo '</pre>';
 
 // pr affecter 1 valeur à la prpriété de l objet, je pointe avc -> vers 7 propriété et je lui affecte 1 valeur avc =
 // j ai affecté la valeur de la propriété de  l objet, et ps celle de la classe. La classe ne doit ps etre modifiée. 
-echo $panier -> nbProduits = 5; 
+echo $panier->nbProduits = 5; 
 // desormais sa valeur ne sera pls NULL, mais 5 
 echo '<pre>'; var_dump($panier); echo '</pre>';
 
 echo 'il ya ' . $panier -> nbProduits . ' produits dns le panier' . '<br>';
 
 // je peux recup le contenu de 7 methode, en dehors de la classe car elle à 1 visibilité public.
-// visibilité public permet d'y accéder dns la classe. Dns 1 classe qui hérite et en dehors de la classe 
-echo $panier -> ajouterPanier() . '<br>'; 
+// visibilité public permet d'y accéder dns la classe. Dns 1 classe qui hérite et en dehors de la classe  
+echo $panier->ajouterPanier() . '<br>'; 
 
 // je ne peux accéder en dehors de la classe (Panier) aux 2 prochaines méthodes.
 // la visibilité protected permet d y acceder à l intérieur de la classe et dns 1 classe qui hérite 
