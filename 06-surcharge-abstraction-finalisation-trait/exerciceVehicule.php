@@ -17,7 +17,7 @@ class Renault extends Vehicule{
 
     public function carburant(){
 
-        return "diesel";
+        return "diesel"; 
     }
 
     public function nombreTestsObligatoires(){

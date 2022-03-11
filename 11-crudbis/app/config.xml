@@ -1,0 +1,26 @@
+<!-- j ouvre 1 passage xml -->
+<?xml version="1.0" ?> 
+
+<config>
+    <!-- celui ci ira après host= -->
+    <host>localhost</host> 
+    <!-- celui ci sera pr 'root' -->
+    <user>root</user> 
+    <!-- celui ci sera pr 1 mot de passe '' -->
+    <password></password> 
+    <!-- celui ci ira après dbname= -->
+    <dbname>oo_entreprise</dbname> 
+    <!-- *******************************
+    le config xml est très utile pr renseigner ls différets infos pr se connecter à la BDD
+    ls infos données ici servent pr le travail en local
+    la seule donnée qui changera, sera le nom de votre BDD 
+    Mais sinn pr n importe quel projet en local les autres inofs resteront similaires
+    le jour ou vs mettrez votre site en ligne cst ici qu il fautdra venir pr modifier ls données
+    - A la place de localhost vs devrez renseigner le host que vs aura fourni votre hébergeur
+    - Pareil pr le dbuser (nom d utilisateur), vs devrez remplacer root par celui que votre hébergeur vs aura donné 
+    - Pareil pr le dbname, ça ne sera probablement pls ce nom généric, mais 1 code représentant 7 mm BDD 
+    - Enfin, cst vs choisirez 1 password lorsque vs importez votre BDD chez votre hébergeur, et vs remettrez ce mm password ici
+    **************************************--> 
+    <!-- cette dernière info ne sera ps utile pr se connecter mais pr récupérer ls noms de table au moment de faire ds requetes sql -->
+    <table>employe</table>  
+</config> 
