@@ -8,12 +8,12 @@ class Autoload{
         // La constante magique __DIR__ me récupère le chemin vers mon fichier.
         // elle récupère l'intégralité du chemin vers mon projet, qu'il soit en local...comme plus tard en ligne, ce qui sera très interessant. Je n'aurais de modification a faire lors de ce changement là
         require_once __DIR__ . '/' . str_replace('\\', '/', $classname . '.php') ;
-        // echo __DIR__ . '/' . str_replace('\\', '/', $classname . '.php <br>') ;
+        // echo "require_once" . __DIR__ . '/' . str_replace('\\', '/', $classname . '.php <br>') ; 
     }
 
 }
 
-spl_autoload_register(array('Autoload', 'inclusionAuto'));
+spl_autoload_register(array('Autoload', 'inclusionAuto')); 
 
 // $controller = new controller\Controller;
 // echo __DIR__ ;

@@ -19,20 +19,20 @@ class EntityRepository{
         if(!$this->pdo){
             // Dans ce cas là, on va devoir se connecter à la BDD
             // je vais tester la connexion à ma bdd dans un try / catch
-            // cela me permettra de cibler + vite pourquoi je n'ai pas réussi à me connecter à la BDD
+            // cela me permettra de cibler + vite pourquoi je n'ai pas réussi à me connecter à la BDD 
             try{
-                $xml = simplexml_load_file('../app/config.xml');
-                echo '<pre>'; print_r($xml);echo '</pre>';
+                $xml = simplexml_load_file('app/config.xml'); 
+                // echo '<pre>'; print_r($xml);echo '</pre>'; 
                 // je recup la valeur de table dns config.xml pr  l affecter à ma public propriété table (en pointant vers elle avc $this)
                 $this->table = $xml->table; 
 
                 try{
                     $this->pdo = new \PDO("mysql:host=$xml->host; dbname=$xml->dbname", "$xml->user", "$xml->password", array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-                    echo "connexion etablie";
+                    // echo "connexion etablie"; 
                 }
 
                 catch(\PDOException $erreur){
-                    
+                    echo "Erreur BDD inconnue / " . $erreur->getMessage() . "le prbleme vient pt-être du fichier config.xml. Vérifiez ls données contenues. <br> problème à la ligne " . $erreur->getLine() . " du fichier " . $erreur->getFile() . '<br>';  
                 }
             }
             // si la connexion ne réussit pas, je récupère un message dans le bloc catch
@@ -47,6 +47,27 @@ class EntityRepository{
         // si on est déjà connecté (le else), alors on va retourner les informations contenues dans $pdo
         return $this->pdo; 
 
+    }
+
+    public function selectAllEntityRepo(){
+
+        // on pointe vers notre méthode getPdo
+        $data = $this->getPdo()->query("SELECT * FROM $this->table"); 
+
+        // equivalent à la syntaxe php procedural ($this->getPdo = $pdo en procedural)
+        // $data = $pdo->query("SELECT * FROM employe");
+
+        // after avoir fait le query je fais obligatoirement le fetch pr recup le resultat du query(ligne 55)
+        $afficheTousEmployes = $data->fetchAll(\PDO::FETCH_ASSOC);
+        // je retourne le résultat 
+        return $afficheTousEmployes;
+    }
+
+    public function getFields(){
+
+        $data = $this->getPdo()->query("DESC " . $this->table);
+        $afficheEntetes = $data->fetchAll(\PDO::FETCH_ASSOC);
+        return $afficheEntetes; 
     }
 
 }
